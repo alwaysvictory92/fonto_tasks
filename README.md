@@ -1,4 +1,5 @@
 # Fonto Backend Task
+
 This repository demonstrates the designated backend task created with Python 3 and Visual Studio Code. There are two files in this repo. 
 ---
 1. *main.py* containing the solution of the task. 
@@ -8,6 +9,7 @@ other files includes textfile and csv file that is given to the program and gene
 ---
 
 ## How to Execute File
+
 The following steps guidelines the successful execution of the file. 
 ---
 1. Through command-line either from command prompt (windows) or Terminal (linux/MacOS) make sure the path is same as the directory of the *main.py* file and input file exist in the same directory. 
