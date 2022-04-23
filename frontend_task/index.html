@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Properties & Values</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/table_style.css" />
+        <link rel="stylesheet" href="css/modal.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="header">
+                    <h1>Properties</h1>
+                </div>
+                <div class="add_property_button">
+                    <button name="add_property" class="button_element" onClick="add_property_modal()"> Add Property</button>
+                </div>
+                <div class="property_table">
+                    <div class="property_table_head">
+                        <div class="table_row">
+                            <div class="table_head"><span>ID</span></div>
+                            <div class="table_head"><span>Properties</span></div>
+                            <div class="table_head"><span>Values</span></div>
+                        </div>
+                    </div>
+                    <div class="property_table_body">
+                        <div class="table_row">
+                            <div class="table_data"><label>1</label></div>
+                            <div class="table_data"><label>6A MARY ST AUBURN NSW 2144</label></div>
+                            <div class="table_data"><label>1,200,000</label></div>
+                        </div>
+                        <div class="table_row">
+                            <div class="table_data"><label>2</label></div>
+                            <div class="table_data"><label>36B CARINYA RD GIRRAWEEN NSW 2145</label></div>
+                            <div class="table_data"><label>$1,500,000</label></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="total_value">
+                    <label>Total: <span>$</span>$1,200,000</label>
+                </div>
+            </div>
+            <div id="property_modal" class="modal">
+
+                <div class="modal_content">
+                  <div class="modal_header">
+                    <a onClick="close_modal()"><span class="close">&times;</span></a>
+                    <h2>Add Property</h2>
+                  </div>
+                  <div class="modal_body">
+                    <p>Some text in the Modal Body</p>
+                    <p>Some other text...</p>
+                  </div>
+                  <div class="modal_footer">
+                    <button name="add_property" onClick="" class="button_element">Add Property</button>
+                  </div>
+                </div>
+              
+              </div>
+        </div>
+
+ 
+    </body>
+
+    <script>
+        function add_property_modal() {
+            document.getElementById("property_modal").style.display = "block";
+        }
+        function close_modal() {
+            document.getElementById("property_modal").style.display = "none";
+        }
+    </script> 
+</html>
