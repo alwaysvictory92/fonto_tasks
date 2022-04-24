@@ -65,3 +65,16 @@
   margin:10px;
   text-align:right;
 }
+
+.modal_body_success, .modal_body_error {
+  display : none;
+  text-align: center;
+}
+
+.modal_body_success {
+  color: rgb(14, 151, 14)
+}
+
+.modal_body_error {
+  color: rgb(235, 66, 66);
+}
