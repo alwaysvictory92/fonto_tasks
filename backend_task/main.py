@@ -30,8 +30,6 @@ def find_postcode(state, suburb):
     for states in postcode_data:
         for tup in postcode_data[states]:
             if suburb in tup[1].lower():
-               # print ("suburb " + suburb)
-               # print(tup[0])
                 return tup[0]
 #END OF FIND POSTCODE FUNCTION        
             
@@ -55,7 +53,6 @@ def process_address(addr):
     suburb = "" #if empty meaning suburb not found
     for i in range(len(addr1)):
         if addr1[i].lower() in street_types:
-            #print("found " + addr1[i])
             suburb = ' '.join(addr1[i+1:])
             del addr1[i+1:]
             break
@@ -67,11 +64,11 @@ def process_address(addr):
     street = ' '.join(addr1)
     
     try:
-        get_suburb(state_acronym, str(postcode))
+        get_suburb(state_acronym, str(postcode)) #checks the suburb provided state and postcode.
+
         #opening file for each address to demonstrate address adding per customer on the server.
         with open("files/output.csv", "a+") as file:
             file.write("{},{},{},{}\n".format(street,suburb,state_acronym,postcode))
-       # print("Address: " + addr + " successfully added to file.")
     except:
         print("ERROR: Address is not valid or not Australian: " + addr)
 # END OF PROCESS ADDRESS FUNCTION     
@@ -96,6 +93,9 @@ def init():
 
 if __name__ == "__main__": 
     init()
+    
+    open("files/output.csv", "w").close() 
+    #creates a new file if does not exist or truncat old data from file.
     
     with open("files/sample_addresses.csv", "r") as file: 
         [process_address(line.translate(str.maketrans('','',"\n\"\',"))) for line in file]
