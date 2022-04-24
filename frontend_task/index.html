@@ -9,12 +9,15 @@
     <body>
         <div class="container">
             <div class="row">
+                
                 <div class="header">
                     <h1>Properties</h1>
                 </div>
+                
                 <div class="add_property_button">
                     <button name="add_property" class="button_element" onClick="open_property_modal()"> Add Property</button>
                 </div>
+                
                 <div class="property_table">
                     <div class="property_table_head">
                         <div class="table_row">
@@ -25,21 +28,23 @@
                     </div>
                     <div id="property_table_body" class="property_table_body">
                         <!--this will be filled by javacript function.-->
-                    </div>
-                    
+                    </div> 
                 </div>
                 <div id = "loading">Please wait while properties are being loaded.</div>
+                
                 <div class="total_value">
                     <label id="total_valuation"><!-- to be calculated and filled by JS function --></label>
                 </div>
-            </div>
+            
+            </div> <!--end of row div-->
+            
             <div id="property_modal" class="modal">
-
                 <div class="modal_content">
                   <div class="modal_header">
                     <a onClick="close_property_modal()"><span class="close">&times;</span></a>
                     <h2>Enter Property Details</h2>
                   </div>
+                  <!--modal body for add property-->
                   <div id="modal_body_form" class="modal_body">
                     <form id="property_form" onSubmit()="add_property_to_api()">
                         <div class="form_element">
@@ -52,22 +57,21 @@
                         </div>
                     </form>
                   </div>
+                  <!--modal property for success -->
                   <div id="modal_body_success" display="none" class="modal_body_success">
                       <h3>Property is Successfully Added with Property ID: <label id="property_id"></label></h3>
                   </div>
+                  <!--modal body for error message-->
                   <div id="modal_body_error" display="none" class="modal_body_error">
                       <h3>Error in Adding the Property.</h3>
                   </div>
                   <div class="modal_footer">
                     <button id="add_property_btn" onClick="add_property_to_api()" name="add_property" class="button_element">Add Property</button>
-                
                   </div>
                 </div>
-              
-              </div>
-        </div>
-
- 
+              </div> <!--end of modal-->
+        </div> <!--end of containar div-->
     </body>
+    
     <script src="js/main.js"></script> 
 </html>

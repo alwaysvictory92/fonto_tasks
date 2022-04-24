@@ -1,5 +1,3 @@
-
-
 const xhr = new XMLHttpRequest();
 xhr.responseType = 'json';
 
@@ -8,6 +6,12 @@ const base_url = "https://take-home.hasura.app/api/rest";
 window.onload = function() {
         get_data();
 };
+
+xhr.onerror = function() {//triggers when such as internet connection failures. 
+    model_set_mode(3);
+    open_property_modal();
+};
+
 
 function get_data() {
     document.getElementById("property_table_body").innerHTML = "";
@@ -23,28 +27,27 @@ function get_data() {
             model_set_mode(3);
             open_property_modal();
         } else { 
-            console.log("returned values");
             properties = xhr.response.properties; //for easier writing. 
             
-            properties.sort(function (a, b) {
+            properties.sort(function (a, b) {//sorting by ID in ascending order
                 return a.id - b.id;
             });
             
             var total = 0;
-           // console.log(properties);
+
             for (obj in properties) {
                 if(!properties[obj].hidden) {
                     add_property_to_table(properties[obj].id, properties[obj].address, properties[obj].valuation);
                     total += properties[obj].valuation;
                 }
-
             }
+
             document.getElementById("total_valuation").innerHTML = 'Total: <span>$</span>' + total.toLocaleString("en-US");
             document.getElementById("loading").style.display = "none";
         }
     };
-
 }
+//  END OF GET_DATA FUNCTION
 
 function add_property_to_table(id, address, value) {
     table_div = document.getElementById("property_table_body").innerHTML += `
@@ -54,24 +57,19 @@ function add_property_to_table(id, address, value) {
         <div class="table_data"><label>$` + value.toLocaleString("en-US") +`</label></div>
     </div>`;
 }
+//  END OF ADD PROPERTY TO TABLE FUNCTION 
 
 
-xhr.onerror = function() {
-    model_set_mode(3);
-    open_property_modal();
-};
 
 function add_property_to_api() { 
-
-    
-    console.log("here i am");
     var form_data = new FormData(document.querySelector('form'));
     form_data = {
         'address' : form_data.get("address"),
         'valuation' : form_data.get("addr_value")
     };
+
+    //simple form validation techniques for null values 
     isValid = true;
-    console.log(form_data);
     if(form_data.address == "") {
         document.getElementById("address").setAttribute("class", "error"); 
         isValid=false;
@@ -83,10 +81,8 @@ function add_property_to_api() {
     }
 
     if(!isValid) {
-        console.log("error form data is not valid");
         return;
     }
-
 
     xhr.open('POST', base_url + '/properties/add', true);
     xhr.setRequestHeader("content-type", "json/application");
@@ -96,20 +92,21 @@ function add_property_to_api() {
         if (xhr.status != 200) { 
             model_set_mode(3); 
         } else { 
-            console.log("i am now here");
-            console.log(xhr.response.add_property["id"]);
             model_set_mode(2)
             document.getElementById("property_id").innerHTML = xhr.response.add_property["id"];
             get_data();
         }
     };
 
-    xhr.send(JSON.stringify(form_data));
+    xhr.send(JSON.stringify(form_data)); //async request 
 }
+//  END OF ADD PROPERTY TO API FUNCTION 
 
 function open_property_modal() {
     document.getElementById("property_modal").style.display = "block";
 }
+// END OF OPEN MODAL FUNCTION 
+
 function close_property_modal() {
     document.getElementById("property_modal").style.display = "none";
     document.getElementById("property_form").reset();
@@ -117,6 +114,7 @@ function close_property_modal() {
     document.getElementById("addr_value").setAttribute("class", "");
     model_set_mode(1);
 }
+//  END OF CLOSE MODAL FUNCTION 
 
 function model_set_mode(id) {
     switch(id) {
@@ -143,9 +141,11 @@ function model_set_mode(id) {
             break;
     }
 }
+//  END OF SET MODE FOR MODAL FUNCTION 
 
 function change_btn (text, func) {
     btn = document.getElementById("add_property_btn");
     btn.setAttribute("onClick", func);
     btn.innerHTML = text;
 }
+//  END OF CHANGE BUTTON FUNCTION.
