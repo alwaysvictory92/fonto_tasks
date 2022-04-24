@@ -2,6 +2,10 @@ const xhr = new XMLHttpRequest();
 xhr.responseType = 'json';
 
 const base_url = "https://take-home.hasura.app/api/rest";
+const api_key = {
+    "username" : "x-hasura-user-id",
+    "key_value" : "ASy22JCTOKbqrsF"
+};
 
 window.onload = function() {
         get_data();
@@ -19,7 +23,7 @@ function get_data() {
 
     xhr.open('GET', base_url + '/properties/all', true);
     xhr.setRequestHeader("content-type", "json/application");
-    xhr.setRequestHeader("x-hasura-user-id", "ASy22JCTOKbqrsF");
+    xhr.setRequestHeader(api_key.username, api_key.key_value);
     xhr.send();
 
     xhr.onload = function() {
@@ -86,7 +90,7 @@ function add_property_to_api() {
 
     xhr.open('POST', base_url + '/properties/add', true);
     xhr.setRequestHeader("content-type", "json/application");
-    xhr.setRequestHeader("x-hasura-user-id", "ASy22JCTOKbqrsF");
+    xhr.setRequestHeader(api_key.username, api_key.key_value);
 
     xhr.onload = function() {
         if (xhr.status != 200) { 
