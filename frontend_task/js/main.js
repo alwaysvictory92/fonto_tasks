@@ -39,7 +39,7 @@ function get_data() {
                 }
 
             }
-            document.getElementById("total_valuation").innerHTML += total.toLocaleString("en-US");
+            document.getElementById("total_valuation").innerHTML = 'Total: <span>$</span>' + total.toLocaleString("en-US");
             document.getElementById("loading").style.display = "none";
         }
     };
