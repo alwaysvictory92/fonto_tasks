@@ -1,0 +1,24 @@
+.form_element {
+    padding: 10px;
+    display: flex;
+    font-size: 20px;
+}
+
+.form_element label {
+    
+    font-weight: 400;
+    width: 25%;
+    padding: 10px;
+    float: left;
+}
+
+.form_element input {
+    width: 75%;
+    padding: 20px;
+    float: right;
+}
+
+.form_element input:focus {
+    color: rgb(109, 109, 255);
+    font-weight: bolder;
+}

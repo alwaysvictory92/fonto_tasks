@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/table_style.css" />
         <link rel="stylesheet" href="css/modal.css" />
+        <link rel="stylesheet" href="css/form.css" />
     </head>
     <body>
         <div class="container">
@@ -12,7 +13,7 @@
                     <h1>Properties</h1>
                 </div>
                 <div class="add_property_button">
-                    <button name="add_property" class="button_element" onClick="add_property_modal()"> Add Property</button>
+                    <button name="add_property" class="button_element" onClick="open_property_modal()"> Add Property</button>
                 </div>
                 <div class="property_table">
                     <div class="property_table_head">
@@ -22,37 +23,37 @@
                             <div class="table_head"><span>Values</span></div>
                         </div>
                     </div>
-                    <div class="property_table_body">
-                        <div class="table_row">
-                            <div class="table_data"><label>1</label></div>
-                            <div class="table_data"><label>6A MARY ST AUBURN NSW 2144</label></div>
-                            <div class="table_data"><label>1,200,000</label></div>
-                        </div>
-                        <div class="table_row">
-                            <div class="table_data"><label>2</label></div>
-                            <div class="table_data"><label>36B CARINYA RD GIRRAWEEN NSW 2145</label></div>
-                            <div class="table_data"><label>$1,500,000</label></div>
-                        </div>
+                    <div id="property_table_body" class="property_table_body">
+                        <!--this will be filled by javacript function.-->
                     </div>
                     
                 </div>
                 <div class="total_value">
-                    <label>Total: <span>$</span>$1,200,000</label>
+                    <label id="total_valuation">Total: <span>$</span><!-- to be calculated and filled by JS function --></label>
                 </div>
             </div>
             <div id="property_modal" class="modal">
 
                 <div class="modal_content">
                   <div class="modal_header">
-                    <a onClick="close_modal()"><span class="close">&times;</span></a>
-                    <h2>Add Property</h2>
+                    <a onClick="close_property_modal()"><span class="close">&times;</span></a>
+                    <h2>Enter Property Details</h2>
                   </div>
                   <div class="modal_body">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
+                    <form id="property_form" action="">
+                        <div class="form_element">
+                            <label for="address">Address: </label>
+                            <input required="true" type="text" id="address" name="address" placeholder="Enter Property Address" /> 
+                        </div>
+                        <div class="form_element">
+                            <label for="addr_value">Value: </label>
+                            <input required="true" type="number" id="addr_value" name="addr_value" placeholder="Enter Property Value" /> 
+                        </div>
+                    
                   </div>
                   <div class="modal_footer">
-                    <button name="add_property" onClick="" class="button_element">Add Property</button>
+                    <button type="submit" name="add_property" class="button_element">Add Property</button>
+                </form>
                   </div>
                 </div>
               
@@ -61,13 +62,5 @@
 
  
     </body>
-
-    <script>
-        function add_property_modal() {
-            document.getElementById("property_modal").style.display = "block";
-        }
-        function close_modal() {
-            document.getElementById("property_modal").style.display = "none";
-        }
-    </script> 
+    <script src="js/main.js"></script> 
 </html>
